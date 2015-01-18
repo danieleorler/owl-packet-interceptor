@@ -1,0 +1,26 @@
+{
+    "name": "dalen/owl-packet-interceptor",
+    "type": "library",
+    "description": "Intercepts packet from OWL Intuition and parses them",
+    "keywords": ["owl","xml","udp"],
+    "authors":
+    [
+        {
+            "name": "Daniele Orler",
+            "email": "daniele.orler@gmail.com",
+            "homepage": "https://github.com/danieleorler"
+        }
+    ],
+    "require":
+    {
+        "php": ">=5.5"
+    },
+    "require-dev":
+    {
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "autoload":
+    {
+        "psr-4": {"Dalen\\OWLPacketInterceptor\\": "src/"}
+    }
+}
