@@ -1,6 +1,9 @@
 <?php
 
-namespace Dalen\OWLPacketInterceptor\Domain;
+namespace Dalen\OWLPacketInterceptor\Domain\Electricity;
+
+use Dalen\OWLPacketInterceptor\Domain\Base;
+use Dalen\OWLPacketInterceptor\Domain\Collection;
 
 class Electricity extends Base
 {

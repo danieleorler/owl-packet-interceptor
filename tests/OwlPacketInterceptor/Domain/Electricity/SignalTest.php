@@ -1,8 +1,8 @@
 <?php
 
-namespace OWLPacketInterceptor\Domain;
+namespace OWLPacketInterceptor\Domain\Electricity;
 
-use Dalen\OWLPacketInterceptor\Domain\Signal;
+use Dalen\OWLPacketInterceptor\Domain\Electricity\Signal;
 
 /**
  * Description of SignalTest

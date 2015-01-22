@@ -1,6 +1,8 @@
 <?php
 
-namespace Dalen\OWLPacketInterceptor\Domain;
+namespace Dalen\OWLPacketInterceptor\Domain\Electricity;
+
+use Dalen\OWLPacketInterceptor\Domain\Base;
 
 class Channel extends Base
 {
