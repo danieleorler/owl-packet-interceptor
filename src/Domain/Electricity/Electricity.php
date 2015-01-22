@@ -20,14 +20,25 @@ class Electricity extends Base
         if(!empty($data))
         {
             parent::__construct(array('id' => $data['id']));
-
-            foreach($data['chan'] AS $channel)
+            
+            if(is_array($data))
             {
-                $this->fields['channels']->addItem(new Channel($channel));
+                $this->loadFromArray($data);
             }
-
-            $this->fields['signal']     =  new Signal($data['signal']);
-            $this->fields['battery']    =  new Battery($data['battery']);
         }
+    }
+    
+    /*
+     * @parameter $data Array
+     */
+    private function loadFromArray($data)
+    {
+        foreach($data['chan'] AS $channel)
+        {
+            $this->fields['channels']->addItem(new Channel($channel));
+        }
+
+        $this->fields['signal']     =  new Signal($data['signal']);
+        $this->fields['battery']    =  new Battery($data['battery']);
     }
 }

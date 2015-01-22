@@ -1,4 +1,4 @@
-<electricity id='4437190058AA'>
+<electricity id='AA12345679'>
     <signal rssi='-86' lqi='91'/>
     <battery level='100%'/>
     <chan id='0'>
@@ -6,10 +6,6 @@
         <day units='wh'>9904.89</day>
     </chan>
     <chan id='1'>
-        <curr units='w'>0.00</curr>
-        <day units='wh'>0.00</day>
-    </chan>
-    <chan id='2'>
         <curr units='w'>0.00</curr>
         <day units='wh'>0.00</day>
     </chan>

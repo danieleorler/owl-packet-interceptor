@@ -1,15 +1,18 @@
 <?php
 
-require_once('Listener.php');
-require_once('XMLDataReader.php');
-require_once('Storage.php');
+require_once('./vendor/autoload.php');
 
-$listener = new Listener(8123);
-$storage = new Storage();
+use Dalen\OWLPacketInterceptor\Listener\UDPListener;
+use Dalen\OWLPacketInterceptor\Storage\StdOutStorage;
+use Dalen\OWLPacketInterceptor\Parser\ElectricityXMLParser;
+use Dalen\OWLPacketInterceptor\Domain\Electricity\Electricity;
+
+$listener = new UDPListener('0.0.0.0',8000);
+$parser = new ElectricityXMLParser();
+$storage = new StdOutStorage();
 
 while(true)
 {
-    $xmlReader = new XMLDataReader($listener->read());
-
-    $storage->log((int)$xmlReader->getXml()->chan[0]->curr);
+    $parser->setXMLString($listener->read());
+    $storage->log(new Electricity($parser->parse()));
 }
