@@ -14,5 +14,5 @@ $storage = new StdOutStorage();
 while(true)
 {
     $parser->setXMLString($listener->read());
-    $storage->log(new Electricity($parser->parse()));
+    $storage->storeElectricity(new Electricity($parser->parse()));
 }

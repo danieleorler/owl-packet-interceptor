@@ -22,6 +22,8 @@ class ElectricityXMLParser
         
         $electricity['id']      = (string)$xml->attributes()['id'];
         $electricity['chan']    = [];
+        $electricity['signal']  = [];
+        $electricity['battery'] = [];
 
         foreach($xml->signal->attributes() AS $k => $v)
         {
