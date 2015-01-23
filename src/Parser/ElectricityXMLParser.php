@@ -20,10 +20,9 @@ class ElectricityXMLParser
     {
         $xml = new \SimpleXMLElement($this->xmlString);
         
+        $electricity            = array();
         $electricity['id']      = (string)$xml->attributes()['id'];
-        $electricity['chan']    = [];
-        $electricity['signal']  = [];
-        $electricity['battery'] = [];
+        $electricity['chan']    = array();
 
         foreach($xml->signal->attributes() AS $k => $v)
         {
@@ -37,6 +36,7 @@ class ElectricityXMLParser
         
         foreach($xml->chan AS $chan)
         {
+            $channel                    = array();
             $channel['id']              = (int)$chan->attributes()['id'];
             $channel['curr']['units']   = (string)$chan->curr->attributes()['units'];
             $channel['curr']['value']   = (float)$chan->curr;
