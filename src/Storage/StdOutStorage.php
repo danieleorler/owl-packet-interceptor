@@ -15,4 +15,15 @@ class StdOutStorage implements IStorage
     {
         echo(json_encode($electricity));
     }
+
+    public function connect()
+    {
+        echo("StdOut Storage connected!");
+    }
+
+    public function disconnect()
+    {
+        echo("StdOut Storage disconnected!");
+    }
+
 }

@@ -46,4 +46,28 @@ class StdOutStorageTest extends \PHPUnit_Framework_TestCase
         
         $this->assertEquals('{"id":"AA12345679","signal":{"rssi":"-86","lqi":"91"},"battery":{"level":"100%"},"channels":[{"id":0,"current":{"units":"w","value":"1288.00"},"day":{"units":"wh","value":"9904.89"}}]}',$output);
     }
+    
+    public function testConnect()
+    {
+        $storage = new StdOutStorage();
+        
+        ob_start();
+        $storage->connect();
+        $output = ob_get_contents();
+        ob_end_clean();
+        
+        $this->assertEquals("StdOut Storage connected!",$output);
+    }
+
+    public function testDiconnect()
+    {
+        $storage = new StdOutStorage();
+        
+        ob_start();
+        $storage->disconnect();
+        $output = ob_get_contents();
+        ob_end_clean();
+        
+        $this->assertEquals("StdOut Storage disconnected!",$output);
+    }
 }

@@ -10,5 +10,7 @@ use Dalen\OWLPacketInterceptor\Domain\Electricity\Electricity;
  */
 interface IStorage
 {
+    function connect();
     function storeElectricity(Electricity $electricity);
+    function disconnect();
 }

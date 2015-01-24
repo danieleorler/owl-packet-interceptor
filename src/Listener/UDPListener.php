@@ -34,4 +34,9 @@ class UDPListener
     {
         socket_close($this->socket);
     }
+    
+    public function getSocket()
+    {
+        return $this->socket;
+    }
 }
