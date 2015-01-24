@@ -20,5 +20,30 @@ class UDPListenerTest extends \PHPUnit_Framework_TestCase
     
     public function testCreateListener()
     {
+        $listener = new UDPListener("127.0.0.1",8000);
+        
+        $status = socket_get_status($listener->getSocket());
+        $listener->close();
+        $this->assertEquals("udp_socket",$status["stream_type"]);
+    }
+    
+    public function testRead()
+    {
+        $listener = new UDPListener("127.0.0.1",8000);
+        exec('echo -n "testing UDPListener" | nc -4u -q1 127.0.0.1 8000 > /dev/null 2>/dev/null &');
+        $data = $listener->read();
+        $listener->close();
+        $this->assertEquals("testing UDPListener",$data);
+    }
+
+    /**
+     * @expectedException PHPUnit_Framework_Error
+     */
+    public function testClose()
+    {
+        $listener = new UDPListener("127.0.0.1",8000);
+        $listener->close();
+        $status = socket_get_status($listener->getSocket());
+        echo($status);
     }
 }

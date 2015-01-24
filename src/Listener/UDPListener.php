@@ -13,26 +13,22 @@ class UDPListener
 
     public function __construct($ip, $port)
     {
-        $this->socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-        socket_bind($this->socket, $ip, $port);
+        $this->socket = stream_socket_server(sprintf("udp://%s:%d",$ip,$port), $errno, $errorMessage, STREAM_SERVER_BIND);
+
+        if ($this->socket === FALSE)
+        {
+            throw new \UnexpectedValueException("Could not bind to socket: $errorMessage");
+        }
     }
 
     public function read()
     {
-        $from = '';
-        $port = 0;
-        socket_recvfrom($this->socket, $buf, 65535, 0, $from, $port);
-
-        return array
-        (
-            'from' => $from,
-            'data' => $buf,
-        );
+        return stream_socket_recvfrom($this->socket, 65535);
     }
     
     public function close()
     {
-        socket_close($this->socket);
+        fclose($this->socket);
     }
     
     public function getSocket()
