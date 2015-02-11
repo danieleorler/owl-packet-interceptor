@@ -43,7 +43,6 @@ class UDPListenerTest extends \PHPUnit_Framework_TestCase
     {
         $listener = new UDPListener("127.0.0.1",8000);
         $listener->close();
-        $status = socket_get_status($listener->getSocket());
-        echo($status);
+        socket_get_status($listener->getSocket());
     }
 }

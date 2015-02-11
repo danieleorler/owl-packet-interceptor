@@ -3,6 +3,7 @@
     "type": "library",
     "description": "Intercepts packet from OWL Intuition and parses them",
     "keywords": ["owl","xml","udp"],
+    "license": "MIT",
     "authors":
     [
         {
