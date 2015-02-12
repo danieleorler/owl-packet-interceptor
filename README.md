@@ -9,6 +9,8 @@ Official repo stats
 ###Description
 owl-packet-interceptor is a PHP library which intercepts and parses XML packets sent via UDP by an [OWL Monitor].
 
+To do so you first need to change the Data Push Settings on your OWL Intuition Dashboard providing IP address and port where you will install owl-packet-interceptor.
+
 At the moment owl-packet-interceptor is able to handle packets coming from these devices:
 * [OWL Intuition-e]
 
@@ -26,7 +28,19 @@ So:
 * the Domain object in handled by the **Storage**
 
 
-###Example
+###Getting started
+
+Create a new folder and move into it
+
+Install owl-packet-interceptor
+
+```bash
+$ composer require dalen/owl-packet-interceptor:dev-master
+```
+
+Create a new php file, say App.php, and write something like:
+
+
 ```php
 <?php
 
@@ -37,16 +51,41 @@ use Dalen\OWLPacketInterceptor\Storage\StdOutStorage;
 use Dalen\OWLPacketInterceptor\Parser\ElectricityXMLParser;
 use Dalen\OWLPacketInterceptor\Domain\Electricity\Electricity;
 
+// create listener on port 8000
 $listener = new UDPListener('0.0.0.0',8000);
+// create Electricity parser
 $parser = new ElectricityXMLParser();
+// create standard output storage (outputs on the console) 
 $storage = new StdOutStorage();
 
+// listen for new packets
 while(true)
 {
+    // pass the XML string to the parser
     $parser->setXMLString($listener->read());
+    // create a new Electricity object with the data parsed
     $storage->storeElectricity(new Electricity($parser->parse()));
 }
 ```
+
+Run App.php
+
+```bash
+$ php App.php
+```
+
+Open a new shell and try to send a packet
+
+```bash
+$ echo -n "<electricity id='AA12345679'><signal rssi='-86' lqi='91'/><battery level='100%'/><chan id='0'><curr units='w'>1288.00</curr><day units='wh'>9904.89</day></chan></electricity>" | nc -4u -q1 127.0.0.1 8000 > /dev/null 2>/dev/null &
+```
+
+App.php should print the json representation of Electricity object on the standard output.
+
+Now you're ready to write your own Storage!
+
+###License
+MIT
 
 [OWL Monitor]:http://www.theowl.com/
 [OWL Intuition-e]:http://www.theowl.com/index.php/energy-monitors/remote-monitoring/intuition-e/
