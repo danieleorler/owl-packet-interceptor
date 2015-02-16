@@ -1,8 +1,8 @@
 <?php
 
-namespace OWLPacketInterceptor\Domain\Electricity;
+namespace OWLPacketInterceptor\Packet\Electricity;
 
-use Dalen\OWLPacketInterceptor\Domain\Electricity\Electricity;
+use Dalen\OWLPacketInterceptor\Packet\Electricity\Electricity;
 
 /**
  * Description of DayTest
@@ -50,9 +50,21 @@ class ElectricityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2,$object->channels->size());
     }
     
+    public function testGetType()
+    {
+        $object = new Electricity();
+        $this->assertEquals("Dalen\OWLPacketInterceptor\Packet\Electricity\Electricity",$object->getType());
+    }
+    
+    public function testGetId()
+    {
+        $object = new Electricity($this->data);
+        $this->assertEquals('AA12345679',$object->getId());
+    }
+
     public function testGetJson()
     {
         $object = new Electricity($this->data);
-        $this->assertEquals('{"id":"AA12345679","signal":{"rssi":"-86","lqi":"91"},"battery":{"level":"100%"},"channels":[{"id":0,"current":{"units":"w","value":"1288.00"},"day":{"units":"wh","value":"9904.89"}},{"id":1,"current":{"units":"w","value":"0.00"},"day":{"units":"wh","value":"0.00"}}]}',json_encode($object));
+        $this->assertEquals('{"id":"AA12345679","signal":{"rssi":"-86","lqi":"91"},"battery":{"level":"100%"},"channels":[{"id":0,"current":{"units":"w","value":"1288.00"},"day":{"units":"wh","value":"9904.89"}},{"id":1,"current":{"units":"w","value":"0.00"},"day":{"units":"wh","value":"0.00"}}]}',$object->toJson());
     }
 }

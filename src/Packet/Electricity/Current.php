@@ -1,10 +1,10 @@
 <?php
 
-namespace Dalen\OWLPacketInterceptor\Domain\Electricity;
+namespace Dalen\OWLPacketInterceptor\Packet\Electricity;
 
-use Dalen\OWLPacketInterceptor\Domain\Base;
+use Dalen\OWLPacketInterceptor\Packet\Base;
 
-class Day extends Base
+class Current extends Base
 {
     function __construct($data = NULL)
     {

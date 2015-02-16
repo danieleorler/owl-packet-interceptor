@@ -2,7 +2,7 @@
 
 namespace Dalen\OWLPacketInterceptor\Storage;
 
-use Dalen\OWLPacketInterceptor\Domain\Electricity\Electricity;
+use Dalen\OWLPacketInterceptor\Packet\IPacket;
 
 /**
  *
@@ -11,6 +11,6 @@ use Dalen\OWLPacketInterceptor\Domain\Electricity\Electricity;
 interface IStorage
 {
     function connect();
-    function storeElectricity(Electricity $electricity);
+    function storePacket(IPacket $electricity);
     function disconnect();
 }

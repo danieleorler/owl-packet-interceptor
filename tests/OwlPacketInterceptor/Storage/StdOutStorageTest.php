@@ -3,7 +3,8 @@
 namespace OWLPacketInterceptor\Storage;
 
 use Dalen\OWLPacketInterceptor\Storage\StdOutStorage;
-use Dalen\OWLPacketInterceptor\Domain\Electricity\Electricity;
+use Dalen\OWLPacketInterceptor\Packet\Electricity\Electricity;
+use Dalen\OWLPacketInterceptor\Packet\Solar\Solar;
 
 /**
  * Description of StdOutStorageTest
@@ -16,7 +17,7 @@ class StdOutStorageTest extends \PHPUnit_Framework_TestCase
     
     public function __construct()
     {
-        $this->data = array
+        $this->data['electricity'] = array
         (
             'id'        => 'AA12345679',
             'signal'    => array('rssi' => '-86', 'lqi' => '91'),
@@ -31,20 +32,48 @@ class StdOutStorageTest extends \PHPUnit_Framework_TestCase
                 ),
             ),
         );
+        $this->data['solar'] = array
+        (
+            'id'        => 'AA12345679',
+            'day'       => array
+            (
+                'generating'    => array('units' => 'wh','value' => '0.00',),
+                'exporting'     => array('units' => 'wh','value' => '0.00',),
+            ),
+            'current'   => array
+            (
+                'generating'    => array('units' => 'w','value' => '0.00',),
+                'exporting'     => array('units' => 'w','value' => '0.00',),
+            ),
+        );
     }
     
     public function testStoreElectricity()
     {
-        $object = new Electricity($this->data);
+        $object = new Electricity($this->data['electricity']);
         
         $storage = new StdOutStorage();
         
         ob_start();
-        $storage->storeElectricity($object);
+        $storage->storePacket($object);
         $output = ob_get_contents();
         ob_end_clean();
         
-        $this->assertEquals('{"id":"AA12345679","signal":{"rssi":"-86","lqi":"91"},"battery":{"level":"100%"},"channels":[{"id":0,"current":{"units":"w","value":"1288.00"},"day":{"units":"wh","value":"9904.89"}}]}',$output);
+        $this->assertEquals('This is an Electricity Packet',$output);
+    }
+
+    public function testStoreSolar()
+    {
+        $object = new Solar($this->data['solar']);
+        
+        $storage = new StdOutStorage();
+        
+        ob_start();
+        $storage->storePacket($object);
+        $output = ob_get_contents();
+        ob_end_clean();
+        
+        $this->assertEquals('This is a Solar Packet',$output);
     }
     
     public function testConnect()

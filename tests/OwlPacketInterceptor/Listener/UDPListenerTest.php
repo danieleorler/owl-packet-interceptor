@@ -15,7 +15,7 @@ class UDPListenerTest extends \PHPUnit_Framework_TestCase
     
     public function __construct()
     {
-        $this->data = file_get_contents("./tests/data/sample_packet.xml");
+        $this->data = file_get_contents("./tests/data/electricity_sample_packet.xml");
     }
     
     public function testCreateListener()

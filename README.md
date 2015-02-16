@@ -49,7 +49,7 @@ require_once('./vendor/autoload.php');
 use Dalen\OWLPacketInterceptor\Listener\UDPListener;
 use Dalen\OWLPacketInterceptor\Storage\StdOutStorage;
 use Dalen\OWLPacketInterceptor\Parser\ElectricityXMLParser;
-use Dalen\OWLPacketInterceptor\Domain\Electricity\Electricity;
+use Dalen\OWLPacketInterceptor\Packet\Electricity\Electricity;
 
 // create listener on port 8000
 $listener = new UDPListener('0.0.0.0',8000);

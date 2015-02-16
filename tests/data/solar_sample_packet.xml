@@ -1,0 +1,10 @@
+<solar id='00A0C914C851'>
+    <current>
+        <generating units='w'>0.00</generating>
+        <exporting units='w'>0.00</exporting>
+    </current> 
+    <day>
+        <generated units='wh'>0.00</generated>
+        <exported units='wh'>0.00</exported>
+    </day>
+</solar>

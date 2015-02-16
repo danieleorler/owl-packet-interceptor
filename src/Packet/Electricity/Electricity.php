@@ -1,12 +1,14 @@
 <?php
 
-namespace Dalen\OWLPacketInterceptor\Domain\Electricity;
+namespace Dalen\OWLPacketInterceptor\Packet\Electricity;
 
-use Dalen\OWLPacketInterceptor\Domain\Base;
-use Dalen\OWLPacketInterceptor\Domain\Collection;
+use Dalen\OWLPacketInterceptor\Packet\Base;
+use Dalen\OWLPacketInterceptor\Packet\IPacket;
+use Dalen\OWLPacketInterceptor\Packet\Collection;
 
-class Electricity extends Base
+class Electricity extends Base implements IPacket
 {
+    
     function __construct($data = NULL)
     {
         $this->fields = array
@@ -41,4 +43,29 @@ class Electricity extends Base
         $this->fields['signal']     =  new Signal($data['signal']);
         $this->fields['battery']    =  new Battery($data['battery']);
     }
+    
+    /*
+     * returns the Domain's type
+     */
+    function getType()
+    {
+        return get_class();
+    }
+
+    /*
+     * returns the object id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /*
+     * returns the Json representation of the object
+     */
+    public function toJson()
+    {
+        return json_encode($this);
+    }
+
 }

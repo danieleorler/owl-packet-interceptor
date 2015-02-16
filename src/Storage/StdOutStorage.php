@@ -2,7 +2,7 @@
 
 namespace Dalen\OWLPacketInterceptor\Storage;
 
-use Dalen\OWLPacketInterceptor\Domain\Electricity\Electricity;
+use Dalen\OWLPacketInterceptor\Packet\IPacket;
 
 /**
  * Description of StdOutStorage
@@ -11,9 +11,17 @@ use Dalen\OWLPacketInterceptor\Domain\Electricity\Electricity;
  */
 class StdOutStorage implements IStorage
 {
-    public function storeElectricity(Electricity $electricity)
+    public function storePacket(IPacket $packet)
     {
-        echo(json_encode($electricity));
+        if($packet instanceof \Dalen\OWLPacketInterceptor\Packet\Solar\Solar)
+        {
+            echo("This is a Solar Packet");
+        }
+        
+        if($packet instanceof \Dalen\OWLPacketInterceptor\Packet\Electricity\Electricity)
+        {
+            echo("This is an Electricity Packet");
+        }
     }
 
     public function connect()

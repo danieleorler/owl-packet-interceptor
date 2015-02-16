@@ -1,8 +1,8 @@
 <?php
 
-namespace OWLPacketInterceptor\Domain;
+namespace OWLPacketInterceptor\Packet;
 
-use Dalen\OWLPacketInterceptor\Domain\Collection;
+use Dalen\OWLPacketInterceptor\Packet\Collection;
 
 /**
  * Description of Collection

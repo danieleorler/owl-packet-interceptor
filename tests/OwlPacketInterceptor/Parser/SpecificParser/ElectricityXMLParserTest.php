@@ -1,8 +1,9 @@
 <?php
 
-namespace OWLPacketInterceptor\Parser;
+namespace OWLPacketInterceptor\Parser\SpecificParser;
 
-use Dalen\OWLPacketInterceptor\Parser\ElectricityXMLParser;
+use Dalen\OWLPacketInterceptor\Parser\SpecificParser\ElectricityXMLParser;
+use Dalen\OWLPacketInterceptor\Packet\Electricity\Electricity;
 
 /**
  * Description of ElextricityXMLParserTest
@@ -15,13 +16,13 @@ class ElectricityXMLParserTest extends \PHPUnit_Framework_TestCase
     
     public function __construct()
     {
-        $this->data = file_get_contents("./tests/data/sample_packet.xml");
+        $this->data = file_get_contents("./tests/data/electricity_sample_packet.xml");
     }
     
     public function testParse()
     {
         $parser = new ElectricityXMLParser();
-        $parser->setXMLString($this->data);
+        $parser->setXMLElement(new \SimpleXMLElement($this->data));
         
         $expected = array
         (
@@ -45,6 +46,6 @@ class ElectricityXMLParserTest extends \PHPUnit_Framework_TestCase
             ),
         );
         
-        $this->assertEquals($expected,$parser->parse());
+        $this->assertEquals(new Electricity($expected),$parser->parse());
     }
 }

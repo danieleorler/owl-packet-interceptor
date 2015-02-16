@@ -1,8 +1,8 @@
 <?php
 
-namespace Dalen\OWLPacketInterceptor\Domain\Electricity;
+namespace Dalen\OWLPacketInterceptor\Packet\Electricity;
 
-use Dalen\OWLPacketInterceptor\Domain\Base;
+use Dalen\OWLPacketInterceptor\Packet\Base;
 
 class Signal extends Base
 {

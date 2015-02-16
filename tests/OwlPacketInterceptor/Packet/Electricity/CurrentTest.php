@@ -1,8 +1,8 @@
 <?php
 
-namespace OWLPacketInterceptor\Domain\Electricity;
+namespace OWLPacketInterceptor\Packet\Electricity;
 
-use Dalen\OWLPacketInterceptor\Domain\Electricity\Current;
+use Dalen\OWLPacketInterceptor\Packet\Electricity\Current;
 
 /**
  * Description of DayTest

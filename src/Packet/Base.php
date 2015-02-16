@@ -1,6 +1,6 @@
 <?php
 
-namespace Dalen\OWLPacketInterceptor\Domain;
+namespace Dalen\OWLPacketInterceptor\Packet;
 
 /**
  * Description of Base

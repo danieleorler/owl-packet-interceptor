@@ -1,10 +1,15 @@
 <?php
 
-namespace Dalen\OWLPacketInterceptor\Domain\Electricity;
+namespace Dalen\OWLPacketInterceptor\Packet\Solar;
 
-use Dalen\OWLPacketInterceptor\Domain\Base;
+use Dalen\OWLPacketInterceptor\Packet\Base;
 
-class Current extends Base
+/**
+ * Description of Exporting
+ *
+ * @author danieleorler
+ */
+class Exporting extends Base
 {
     function __construct($data = NULL)
     {
