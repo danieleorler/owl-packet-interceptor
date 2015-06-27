@@ -6,7 +6,7 @@ php:
     - hhvm
 matrix:
     allow_failures:
-        - hhvm # fails with close socket
+        - php: hhvm # fails with close socket
 before_script:
     - composer install --prefer-source --dev --no-interaction
 script:
